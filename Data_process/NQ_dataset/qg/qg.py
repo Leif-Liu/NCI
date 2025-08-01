@@ -79,15 +79,23 @@ def main(args):
     text_partitation = []
     text_partitation_id = []
 
-    text_partitation.append(text_list_all[:base])
-    text_partitation_id.append(text_id_all[:base])
-    
-    for i in range(args.partition_num-2):
-        text_partitation.append(text_list_all[(i+1)*base: (i+2)*base])
-        text_partitation_id.append(text_id_all[(i+1)*base: (i+2)*base])
+    if args.partition_num == 1:
+        # 只有一个分区时，包含所有数据
+        text_partitation.append(text_list_all)
+        text_partitation_id.append(text_id_all)
+    else:
+        # 多个分区时的原始逻辑
+        text_partitation.append(text_list_all[:base])
+        text_partitation_id.append(text_id_all[:base])
+        
+        for i in range(args.partition_num-2):
+            text_partitation.append(text_list_all[(i+1)*base: (i+2)*base])
+            text_partitation_id.append(text_id_all[(i+1)*base: (i+2)*base])
 
-    text_partitation.append(text_list_all[(i+2)*base:  ])
-    text_partitation_id.append(text_id_all[(i+2)*base:  ])
+        # 添加最后一个分区（处理剩余的数据）
+        last_start = (args.partition_num-1)*base
+        text_partitation.append(text_list_all[last_start:])
+        text_partitation_id.append(text_id_all[last_start:])
 
     output_qg = []
     output_docid = []

@@ -1,3 +1,7 @@
+import os
+os.environ["HTTP_PROXY"] = "http://10.110.2.13:3128"
+os.environ["HTTPS_PROXY"] = "http://10.110.2.13:3128"
+
 from transformers import BertTokenizer, BertModel
 from tqdm import tqdm
 import argparse
@@ -20,8 +24,14 @@ def main(args):
                 id_doc_dict[docid] = content
 
         
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    model = BertModel.from_pretrained("bert-base-uncased").to(f'cuda:{args.cuda_device}')
+    # 设置代理服务器
+    proxies = {
+        'http': 'http://10.110.2.13:3128',
+        'https': 'http://10.110.2.13:3128'
+    }
+    
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', proxies=proxies)
+    model = BertModel.from_pretrained("bert-base-uncased", proxies=proxies).to(f'cuda:{args.cuda_device}')
 
     ids = list(id_doc_dict.keys())
     text_list_all = []

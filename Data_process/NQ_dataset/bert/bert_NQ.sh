@@ -1,7 +1,7 @@
 # +
-cd bert
-mkdir pkl
-mkdir log
+#cd bert
+# mkdir pkl
+# mkdir log
 MAX_LEN=512
 ITER_NUM=`expr $1 - 1`
 PARTITION_NUM=$1

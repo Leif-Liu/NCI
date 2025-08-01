@@ -76,7 +76,7 @@ for class_ in pred:
 print('Start Recursively Clustering...')
 for i in range(args.k):
     print(i, "th cluster")
-    pos_lists = [];
+    pos_lists = []
     for id_, class_ in enumerate(pred):
         if class_ == i:
             pos_lists.append(id_)

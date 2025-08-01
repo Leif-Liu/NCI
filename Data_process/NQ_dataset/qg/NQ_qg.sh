@@ -1,12 +1,12 @@
 # +
-cd qg
+# Already in qg directory
 
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-sudo apt-get install git-lfs
-git clone https://huggingface.co/castorini/doc2query-t5-base-msmarco
+# curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+# sudo apt-get install git-lfs
+# git clone https://huggingface.co/castorini/doc2query-t5-base-msmarco
 
-mkdir pkl
-mkdir log
+# mkdir pkl
+# mkdir log
 ITER_NUM=`expr $1 - 1`
 PARTITION_NUM=$1
 
